@@ -12,7 +12,8 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mocha": "^6.1.4",
-    "sharp": "^0.22.1"
+    "sharp": "^0.22.1",
+    "supertest": "^4.0.2"
   },
   "scripts": {
     "test": "mocha"
