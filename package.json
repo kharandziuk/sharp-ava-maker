@@ -1,0 +1,18 @@
+{
+  "name": "ava-maker",
+  "version": "1.0.0",
+  "description": "A small project to create avatars from pictures. Should use Sharp and express.",
+  "main": "index.js",
+  "repository": "git@github.com:kharandziuk/sharp-ava-maker.git",
+  "author": "Max Kharandziuk <max.kharandziuk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^6.1.4",
+    "sharp": "^0.22.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
