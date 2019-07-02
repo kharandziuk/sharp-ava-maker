@@ -5,7 +5,7 @@ const fs = require('fs')
 const { promisify } = require('util')
 
 const solution = (file, height, width) => {
-  return file
+  return sharp(file).resize({height, width}).toBuffer()
 }
 
 
