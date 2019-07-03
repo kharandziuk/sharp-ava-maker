@@ -6,6 +6,7 @@ const { expect } = require('chai')
 const { promisify } = require('util')
 const supertest = require('supertest')
 const domain = require('domain')
+const stream = require('stream')
 
 const app = express()
 
@@ -15,18 +16,18 @@ const solution = (file, height, width) => {
 
 
 app.post('/resize/:height/:width', (req, res) => {
-  const d = domain.create()
-  d.run(() => {
   const { height, width } = req.params
-  const resizer = sharp().resize({
-    height: Number(height),
-    width: Number(height)
-  }).jpeg()
-  req
-    .pipe(resizer)
-    .pipe(res)
-  })
-  d.on('error', (e) => {
+    const resizer = sharp().resize({
+      height: Number(height),
+      width: Number(height)
+    }).jpeg()
+  const ps = new stream.PassThrough()
+  ps.pipe(res)
+  promisify(stream.pipeline)(
+        req,
+        resizer,
+        ps
+  ).catch((e) => {
     console.log(e)
     res.sendStatus(400)
   })
